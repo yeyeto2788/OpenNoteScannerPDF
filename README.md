@@ -42,6 +42,13 @@ let's go to the ```Test``` directory and let's execute one of the files.
 ```python Generate_QRcodes_PDF.py```
 This will generate the ```.pdf``` file on the ```QR_Images``` directory and the final images used on the  PDF file in ```.png``` 
 
+**You should get files like this:**
+
+[Final Images on the PDF](https://github.com/yeyeto2788/OpenNoteScannerPDF/blob/master/TestImage.png)
+
+[Final PDF](https://github.com/yeyeto2788/OpenNoteScannerPDF/blob/master/QR_Images/Final.pdf)
+
+
 ####TO DO list:
 [] Remove unnecessary code, images and variables on the script and directory.
 
