@@ -23,16 +23,17 @@ sudo apt-get upgrade
 2. **Let's install the modules needed:**
 We actually need some modules but some of them depend on other modules so for this I have upload a file called ```requirement.txt``` which has all packages installed on my computer but you don't need all this modules on you computer, so you have two options to install the packages.
 
-	*Option 1:
-	```
-	sudo pip install Pillow
-	sudo pip install reportlab
-	sudo pip install qrcode
-	```
-	*Option 2:
-	```
-	sudo pip install -r requirement.txt
-	```
+ *Option 1:
+ ```
+ sudo pip install Pillow
+ sudo pip install reportlab
+ sudo pip install qrcode
+ ```
+ *Option 2:
+ ```
+ sudo pip install -r requirement.txt
+ ```
+ 
 3. **Let's test the code and the modules**
 let's go to the ```Test``` directory and let's execute one of the files.
 ```python Multiple_QRcodes.py``` or ```python Single_QRcode.py```
@@ -43,25 +44,42 @@ This will generate the ```.pdf``` file on the ```QR_Images``` directory and the 
 
 ####TO DO list:
 [] Remove unnecessary code, images and variables on the script and directory.
+
 [] Check if it works on other OS. 
+
 [] Fork the code on OpenNoteScanner repository.
+
 [] Align better the images on the final PDF.
+
 [] Investigate why the black border is not completely shown on the images.
+
 [] Improve code to generate the pages as we expect (from 1 to maximum amount of pages).
+
 [] Create global variable for Maximum amount of pages.
+
 [] Improve documentation.
+
 
 
 **Android Application**
 [Google Play link](https://play.google.com/store/apps/details?id=com.todobom.opennotescanner&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
+
 [GitHub Repository](https://github.com/ctodobom/OpenNoteScanner)
 
 **Some useful links:**
+
 [Reporlab Module](https://pypi.python.org/pypi/reportlab/2.7).
+
 [QRcode Module](https://pypi.python.org/pypi/qrcode/2.7).
+
 [Pillow Module](https://pypi.python.org/pypi/Pillow/2.7.0).
 
+
 **Modules Documentation:**
+
 [Pillow Documentation](http://pillow.readthedocs.io/en/3.0.x/installation.html).
+
 [Reportlab Documentation](https://www.reportlab.com/docs/reportlab-userguide.pdf).
+
 [QRcode Documentation](https://github.com/lincolnloop/python-qrcode).
+
