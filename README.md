@@ -44,7 +44,7 @@ This will generate the ```.pdf``` file on the ```QR_Images``` directory and the 
 
 **You should get files like this:**
 
-[Final Images on the PDF](https://github.com/yeyeto2788/OpenNoteScannerPDF/blob/master/TestImage.png)
+![Final Images on the PDF](https://github.com/yeyeto2788/OpenNoteScannerPDF/blob/master/TestImage.png)
 
 [Final PDF](https://github.com/yeyeto2788/OpenNoteScannerPDF/blob/master/QR_Images/Final.pdf)
 
