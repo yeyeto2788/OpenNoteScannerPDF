@@ -94,7 +94,7 @@ class GeneratePage(object):
                 
             if (self.create_directory()):
                     os.chdir(os.getcwd() + self.DirectoryName)
-                    for i in range(1,self.MaxPages):
+                    for i in range(1,self.MaxPages+1):
                             FinalFileName = self.FileName[:-len(str(i))] + str(i)
                             #print "Creating QR data image based on: %s.png" %FinalFileName
                             qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4, )
