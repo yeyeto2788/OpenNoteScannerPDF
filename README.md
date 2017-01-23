@@ -23,13 +23,13 @@ sudo apt-get upgrade
 2. **Let's install the modules needed:**
 We actually need some modules but some of them depend on other modules so for this I have upload a file called ```requirement.txt``` which has all packages installed on my computer but you don't need all this modules on you computer, so you have two options to install the packages.
 
- *Option 1:
+ * Option 1:
  ```
  sudo pip install Pillow
  sudo pip install reportlab
  sudo pip install qrcode
  ```
- *Option 2:
+ * Option 2:
  ```
  sudo pip install -r requirement.txt
  ```
