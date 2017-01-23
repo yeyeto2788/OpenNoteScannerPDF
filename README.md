@@ -54,23 +54,23 @@ This will generate the ```.pdf``` file on the ```QR_Images``` directory and the 
 
 
 ####TO DO list:
-[ ] Remove unnecessary code and variables on the script and directory.
+- [ ] Remove unnecessary code and variables on the script and directory.
 
-[x] Remove unnecessary images.
+- [x] Remove unnecessary images.
 
-[ ] Check if it works on other OS. 
+- [ ] Check if it works on other OS. 
 
-[ ] Fork the code on OpenNoteScanner repository.
+- [ ] Fork the code on OpenNoteScanner repository.
 
-[ ] Better alignment of the images on the final PDF.
+- [ ] Better alignment of the images on the final PDF.
 
-[ ] Investigate why the black border is not completely shown on the images.
+- [ ] Investigate why the black border is not completely shown on the images.
 
-[ ] Improve code to generate the pages as we expect (from 1 to maximum amount of pages).
+- [ ] Improve code to generate the pages as we expect (from 1 to maximum amount of pages).
 
-[x] Create global variable for Maximum amount of pages.
+- [x] Create global variable for Maximum amount of pages.
 
-[x] Improve documentation.
+- [x] Improve documentation.
 
 
 
