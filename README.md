@@ -15,10 +15,10 @@ Finally, we do a itineration on the images so we can append the images into a va
 #####**Steps to follow:**
 1. **Let's update our system:**
 
-```
-sudo apt-get update
-sudo apt-get upgrade
-```
+ ```
+ sudo apt-get update
+ sudo apt-get upgrade
+ ```
 
 2. **Let's install the modules needed:**
 We actually need some modules but some of them depend on other modules so for this I have upload a file called ```requirement.txt``` which has all packages installed on my computer but you don't need all this modules on you computer, so you have two options to install the packages.
@@ -62,6 +62,7 @@ This will generate the ```.pdf``` file on the ```QR_Images``` directory and the 
 
 
 **Android Application**
+
 [Google Play link](https://play.google.com/store/apps/details?id=com.todobom.opennotescanner&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
 
 [GitHub Repository](https://github.com/ctodobom/OpenNoteScanner)
