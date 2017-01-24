@@ -13,13 +13,11 @@ Import Modules needed for this script.
 import os, qrcode, glob, re
 
 from PIL import Image
-from reportlab.lib.pagesizes import A4
+from reportlab.lib.pagesizes import A4, letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, PageBreak
 from reportlab.lib.units import inch
 from reportlab.platypus import Image as PDFImage
-
-
-
+from reportlab.pdfgen import canvas
 
 """
 Declare functions for the code.
@@ -41,31 +39,7 @@ class GeneratePage(object):
             self.FileName=FileName
             self.PDF_Name=PDF_Name
             self.MaxPages=MaxPages
-   
-    def CreateBackgroud(self):
-        """
-        This function will generate a blank page A4 based on 300dpi.
-        
-        2475 X 3525 ((300 X 8.25) X (300 X 11.75))
-        """
-        TempName1="Black.png"
-        TempName2="white.png"
-        im= Image.new("RGB", (2475, 3525), "#ffffff")
-        im.save(self.BackgroundName, "PNG")
-        im1= Image.new("RGB", (2175, 3225), "#000000")
-        im1.save(TempName1, "PNG")
-        im2= Image.new("RGB", (2075, 3125), "#ffffff")
-        im.save(TempName2, "PNG")
-        bottom=Image.open(self.BackgroundName)
-        middle=Image.open(TempName1)
-        top=Image.open(TempName2)
-        bottom.paste(middle, (95,95))
-        bottom.paste(top, (125,125))
-        bottom.save(self.BackgroundName, "PNG")
-        os.remove(TempName1)
-        os.remove(TempName2)
-
-                                        
+              
     def create_directory(self):
             """
             This fucntion will check whether directory to create image exist or not.
@@ -103,46 +77,29 @@ class GeneratePage(object):
                             img = qr.make_image()
                             with open('%s.png'%FinalFileName, 'wb') as f:
                                     img.save(f)
-                            self.CreateBackgroud()
-
-       
-    def GenerateCompleteImage(self):
-        """
-        Paste QR codes into background images       
-        """
-        self.create_images()
-        for i in os.listdir(os.getcwd()):
-            if (i.endswith(".png") and (not i.startswith(self.BackgroundName))):
-                background=Image.open(self.BackgroundName)
-                image=Image.open(i)
-                background.paste(image, (2063,3113))
-                background.save(i,"PNG")
-                #print "Full image %s created." %i
-
-    def CreatePDF(self):
+ 
+    def GeneratePDF(self):
         """
         Create the PDF based on the images in directory.       
         """
-        filename = self.PDF_Name
-        doc = SimpleDocTemplate(filename,pagesize=A4,
-                                rightMargin=0,leftMargin=0,
-                                topMargin=0,bottomMargin=0)
-        PDF_File=[]
-        width = 8.5*inch
-        height = 11.5*inch    
-        pictures = os.listdir(os.getcwd())
-        x = 0
+        self.create_images()
+        c = canvas.Canvas(self.PDF_Name, pagesize=A4)
+        for image in os.listdir(os.getcwd()):
+            if image.endswith(".png"):
+                # move the origin up and to the left
+                c.translate(0,0)
+                # choose some colors
+                c.setStrokeColorRGB(0,0,0)
+                c.setFillColorRGB(0,0,0)
+                # draw a rectangle
+                c.rect(0.1*inch,0.1*inch,8.1*inch,11.4*inch,stroke=0, fill=1)
+                c.setFillColorRGB(255,255,255)
+                c.rect(0.25*inch,0.25*inch,7.8*inch,11.1*inch,stroke=0, fill=1)
+                c.drawImage(image, 7*inch,0.35*inch, width=1*inch,height=1*inch,mask=None) 
+                c.showPage()
+        c.save()
 
-        for pic in pictures:
-            if (pic.endswith(".png") and (not pic.startswith("Background.png"))):
-                #print pic
-                im = PDFImage(pic, width, height)
-                PDF_File.append(im)
-                PDF_File.append(PageBreak())
-                x += 1
-         
-        doc.build(PDF_File)
-        print "%s created" % filename
+
 
 
         
@@ -150,6 +107,5 @@ Name = "P01 V05 S0000000"
 PDF="Final.pdf"
 MaximumPages=50
 ObjetoALlamar = GeneratePage(Name,PDF,MaximumPages)
-ObjetoALlamar.GenerateCompleteImage()
-ObjetoALlamar.CreatePDF()
+ObjetoALlamar.GeneratePDF()
 print "\nDone"
