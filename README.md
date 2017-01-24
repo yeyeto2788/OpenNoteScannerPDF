@@ -64,7 +64,7 @@ This will generate the ```.pdf``` file on the ```QR_Images``` directory and the 
 
 - [ ] Better alignment of the images on the final PDF.
 
-- [ ] Investigate why the black border is not completely shown on the images.
+- [x] Investigate why the black border is not completely shown on the images.
 
 - [ ] Improve code to generate the pages as we expect (from 1 to maximum amount of pages).
 
