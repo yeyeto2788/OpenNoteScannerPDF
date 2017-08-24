@@ -1,7 +1,9 @@
-#OpenNoteScanner PDF Creator:
+# OpenNoteScanner PDF Creator:
+
 ### This script will create a final PDF file to use with the Android Application OpenNoteScanner it is based on Python 2.7
 
-####Quick explanation of the code:
+#### Quick explanation of the code:
+
 With a given name for the images and for the final PDF, the code will itinerate based on a maximum amount of pages (~~right now it is hardcoded 50~~), it will create the QR images on a 512x512 Pixels, once the QR codes are generated the background images are created.
 
 These Background images are created based on generating one main background (white) the middle image (black) and the top image (white). Those images are pasted together to have a page/image with a "Black Border" with a A4 size based on 300dpi.
@@ -16,7 +18,7 @@ Finally, we do a itineration on the images so we can append the images into a va
 * The name of the images should be at least 4 characters long.
 * Somatimes depending on the OS you have to run the script as ```sudo``` or ```administrator```
 
-#####**Steps to follow:**
+##### **Steps to follow:**
 1. **Let's update our system:**
 
  ```
@@ -53,7 +55,7 @@ This will generate the ```.pdf``` file on the ```QR_Images``` directory and the 
 [Final PDF](https://github.com/yeyeto2788/OpenNoteScannerPDF/blob/master/QR_Images/Final.pdf)
 
 
-####TO DO list:
+#### TO DO list:
 - [ ] Remove unnecessary code and variables on the script and directory.
 
 - [x] Remove unnecessary images.
@@ -71,6 +73,8 @@ This will generate the ```.pdf``` file on the ```QR_Images``` directory and the 
 - [x] Create global variable for Maximum amount of pages.
 
 - [x] Improve documentation.
+
+- [ ] Delete QR code images after code execution
 
 
 
