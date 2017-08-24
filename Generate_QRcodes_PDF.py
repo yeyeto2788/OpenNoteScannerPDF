@@ -1,15 +1,18 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from __future__ import print_function
 
 __author__ = "Juan Biondi"
 __credits__ = ["Juan Biondi"]
-__version__ = "0.1"
+__version__ = "0.2"
 __maintainer__ = "Juan Biondi"
 
 __status__ = "Development"
 
 """
-Import Modules needed for this script.
+Import Modules needed
 """
+
 import os
 import qrcode
 import glob
@@ -22,8 +25,9 @@ from reportlab.lib.units import inch
 from reportlab.platypus import Image as PDFImage
 from reportlab.pdfgen import canvas
 
+
 """
-Declare functions for the code.
+Declare functions
 """
 
 
@@ -32,7 +36,7 @@ class GeneratePage(object):
     Class object to call different functions to create the images needed to
     generate the PDF files.
     """
-    DirectoryName = "/QR_Images/"
+    DirectoryName = "QR_Images" + os.sep
     BackgroundName = "Background.png"
 
 
@@ -52,12 +56,13 @@ class GeneratePage(object):
             If it does not exit it will generate the directory and return True to generate
             the images on directory.
             """
-            if(os.path.isdir(self.DirectoryName)):
-                    print "No need to create directory"
+            DirectoryCheck = os.path.join(os.getcwd(), self.DirectoryName)
+            if(os.path.exists(os.path.join(os.getcwd(), self.DirectoryName))):
+                    print ("No need to create directory")
                     return True
             else:
                     os.mkdir(self.DirectoryName)
-                    print "Directory created" + os.getcwd() + self.DirectoryName
+                    print ("Directory created" + os.path.join(os.getcwd(), self.DirectoryName))
                     return True
 
 
@@ -70,7 +75,7 @@ class GeneratePage(object):
 
 
             if (self.create_directory()):
-                    os.chdir(os.getcwd() + self.DirectoryName)
+                    os.chdir(os.path.join(os.getcwd(), self.DirectoryName))
                     for i in range(1,self.MaxPages+1):
                             FinalFileName = self.FileName[:-len(str(i))] + str(i)
                             #print "Creating QR data image based on: %s.png" %FinalFileName
@@ -102,9 +107,19 @@ class GeneratePage(object):
                 c.drawImage(image, 7*inch, 0.35*inch, width=1*inch, height=1*inch, mask=None)
                 c.showPage()
         c.save()
+        self.DeleteImages(1)
 
-
-
+    def DeleteImages(self, BlnDelete):
+        """
+        Delete images after PDF is created if BlnDelete==1
+        """
+        if BlnDelete:
+            for image in os.listdir():
+                if image.endswith(".png"):
+                    os.remove(image)
+"""
+EXECUTE THE CODE
+"""
 
 
 Name = "P01 V05 S0000000"
@@ -112,4 +127,4 @@ PDF = "Final.pdf"
 MaximumPages = 50
 ObjetoALlamar = GeneratePage(Name, PDF, MaximumPages)
 ObjetoALlamar.GeneratePDF()
-print "\nDone"
+print ("\nDone")
