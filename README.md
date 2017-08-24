@@ -19,6 +19,7 @@ Finally, we do a itineration on the images so we can append the images into a va
 * Sometimes depending on the OS you have to run the script as **`sudo`** or administrator
 
 ##### **Steps to follow:**
+
   1. **Let's update our system:**
 
      ```
@@ -27,6 +28,7 @@ Finally, we do a itineration on the images so we can append the images into a va
      ```
 
   2. **Let's install the modules needed:**
+  
       We actually need some modules but some of them depend on other modules so for this I have upload a file called **`requirement.txt`** which has all packages installed on my computer but you don't need all this modules on you computer, so you have two options to install the packages.
 
        * Option 1:
@@ -41,12 +43,15 @@ Finally, we do a itineration on the images so we can append the images into a va
        ```
 
   3. **Let's test the code and the modules**
+  
     let's go to the **`Test`** directory and let's execute one of the files.
     **`python Multiple_QRcodes.py`** or **`python Single_QRcode.py`**
 
   4. **We are ready to run the script and get the PDF file**
+  
     **`python Generate_QRcodes_PDF.py`** or **`sudo python Generate_QRcodes_PDF.py`**
-    This will generate the **`.pdf`** file on the **`QR_Images`** directory and the final images used on the  PDF file in **`.png`**
+    This will generate the **`.pdf`** file on the **`QR_Images`** directory and the final images used on the  PDF file in 
+    **`.png`**
 
   **You should get files like this:**
 
@@ -55,6 +60,7 @@ Finally, we do a itineration on the images so we can append the images into a va
   [**Final PDF**](https://github.com/yeyeto2788/OpenNoteScannerPDF/blob/master/QR_Images/Final.pdf)
 
 #### **Keeping the QRCode Images**
+
 If you want to keep the images just change the function **`DeleteImages`** where is checks for the **`BlnDelete`** variable in the **`Generate_QRcodes_PDF.py`** file to look something like this:
 
 **FROM:**
