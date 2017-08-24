@@ -44,14 +44,14 @@ Finally, we do a itineration on the images so we can append the images into a va
 
   3. **Let's test the code and the modules**
   
-    let's go to the **`Test`** directory and let's execute one of the files.
-    **`python Multiple_QRcodes.py`** or **`python Single_QRcode.py`**
+      let's go to the **`Test`** directory and let's execute one of the files.
+      Execute this on the terminal: **`python Multiple_QRcodes.py`** or **`python Single_QRcode.py`**
 
   4. **We are ready to run the script and get the PDF file**
   
-    **`python Generate_QRcodes_PDF.py`** or **`sudo python Generate_QRcodes_PDF.py`**
-    This will generate the **`.pdf`** file on the **`QR_Images`** directory and the final images used on the  PDF file in 
-    **`.png`**
+      Run the code by typing on the terminal the following command: **`python Generate_QRcodes_PDF.py`** or **`sudo python Generate_QRcodes_PDF.py`**
+      This will generate the **`.pdf`** file on the **`QR_Images`** directory and the final images used on the  PDF file in 
+    **`.png`**.
 
   **You should get files like this:**
 
