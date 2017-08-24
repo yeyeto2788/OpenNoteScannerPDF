@@ -1,17 +1,22 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 __author__ = "Juan Biondi"
 __credits__ = ["Juan Biondi"]
-__version__ = "0.1"
+__version__ = "0.2"
 __maintainer__ = "Juan Biondi"
 
 __status__ = "Development"
 
 """
-Import modules needed
+Import modules
 """
 import qrcode
 
+
+"""
+EXECUTE THE CODE.
+"""
 
 qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4, )
 
