@@ -75,7 +75,7 @@ if BlnDelete:
 **TO:**
 
 ```
-if BlnDelete:
+if not BlnDelete:
           for image in os.listdir():
               if image.endswith(".png"):
                   os.remove(image)
