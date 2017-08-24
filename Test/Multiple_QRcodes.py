@@ -1,26 +1,31 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 __author__ = "Juan Biondi"
 __credits__ = ["Juan Biondi"]
-__version__ = "0.1"
+__version__ = "0.2"
 __maintainer__ = "Juan Biondi"
 
 __status__ = "Development"
 
 """
-Import Modules needed for this script.
+Import Modules
 """
+
+
 import qrcode
 import os
 
 """
-Declare functions for the code.
+Declare functions
 """
+
+
 class GenerateQR(object):
         """
         Global class to have it more like OOP
         """
-        
+
         def __init__(self, FileName):
                 """
                 Init function to have the variables in the class
@@ -31,10 +36,10 @@ class GenerateQR(object):
                 """
                 This function will generate 50 .png images with a string data replacing last character on the
                 string in order to have a uniques QR codes and names.
-                
+
                 Just have to declare a String variable with the name. It has to be longer that 3 characters.
                 """
-                
+
 
                 for i in range(1,51):
                         FinalFileName = self.FileName[:-len(str(i))] + str(i)
@@ -45,15 +50,12 @@ class GenerateQR(object):
                         with open('%s.png'%FinalFileName, 'wb') as f:
                                 img.save(f)
 
-        
-                        
-"""
-Call the function(s) to be used on the final code.
-"""
 
+"""
+EXECUTE THE CODE.
+"""
 
 
 Name = "P01 V05 S0000000"
 QR=GenerateQR(Name)
 QR.create_images()
-
