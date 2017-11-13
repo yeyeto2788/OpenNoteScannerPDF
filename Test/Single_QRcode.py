@@ -24,7 +24,7 @@ qr.add_data("https://google.com")
 qr.make(fit=True)
 img = qr.make_image()
 
-FileName = "P01 V05 S0000000"
+FileName = "P01 V05 S0000000.png"
 
 with open(FileName, 'wb') as f:
 		img.save(f)
