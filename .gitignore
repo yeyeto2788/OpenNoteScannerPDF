@@ -1,0 +1,22 @@
+# Compiled:
+*.pyc
+
+# Virtual environments:
+/venv/*
+
+# Pycharm related:
+.idea/
+.cache
+*__pycache__*
+
+# Test related files:
+.coverage
+coverage.xml
+unittests.xml
+
+# PyLint related files:
+./pylint.txt
+
+# Modules garbage
+open_note_scanner/PDF/*
+open_note_scanner/QR/*
