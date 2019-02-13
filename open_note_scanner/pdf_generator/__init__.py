@@ -19,5 +19,3 @@ __email__ = 'juanernestobiondi@gmail.com'
 __maintainer__ = "Juan Biondi"
 
 __status__ = "Development"
-
-

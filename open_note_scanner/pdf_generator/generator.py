@@ -1,4 +1,11 @@
+"""
 
+Main logic of pdf creating using reportlab modules.
+
+The pdf files are created based on argument passed to the
+class `PDFGenerator`
+
+"""
 import os
 import qrcode
 
@@ -14,7 +21,7 @@ SIZES = {
 }
 
 
-class PDFGenerator(object):
+class PDFGenerator:
     """
     Class object to call different functions to create the images needed to
     generate the PDF files.
@@ -48,21 +55,21 @@ class PDFGenerator(object):
         """
 
         if utils.create_directory():
-                # Go to QR images directory.
-                os.chdir(self.qr_directory)
-                for int_index in range(1, (self.max_pages + 1)):
-                        final_file_name = self.qr_data[:-len(str(int_index))] + str(int_index)
-                        qr = qrcode.QRCode(version=1,
-                                           error_correction=qrcode.constants.ERROR_CORRECT_L,
-                                           box_size=10,
-                                           border=4, )
-                        qr.add_data(final_file_name)
-                        qr.make(fit=True)
-                        img = qr.make_image()
-                        with open('%s.png'%final_file_name, 'wb') as f:
-                                img.save(f)
-                # Return to the base directory.
-                os.chdir(self.base_dir)
+            # Go to QR images directory.
+            os.chdir(self.qr_directory)
+            for int_index in range(1, (self.max_pages + 1)):
+                final_file_name = self.qr_data[:-len(str(int_index))] + str(int_index)
+                qr_img = qrcode.QRCode(version=1,
+                                       error_correction=qrcode.constants.ERROR_CORRECT_L,
+                                       box_size=10,
+                                       border=4, )
+                qr_img.add_data(final_file_name)
+                qr_img.make(fit=True)
+                img = qr_img.make_image()
+                with open('%s.png'%final_file_name, 'wb') as qr_img_file:
+                        img.save(qr_img_file)
+            # Return to the base directory.
+            os.chdir(self.base_dir)
 
     def generate_pdf(self, size='A4', bln_delete=1):
         """
