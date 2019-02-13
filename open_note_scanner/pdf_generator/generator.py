@@ -41,11 +41,9 @@ class PDFGenerator(object):
 
     def create_images(self):
         """
-        This function will generate 50 .png images with a string data replacing
-        last character on the string in order to have a uniques QR codes and names.
-
-        Just have to declare a String variable with the name. It has to be longer
-        that 3 characters.
+        This function will generate .png images with a string data replacing
+        last characters of the string by the number of iteration in order to
+        have a uniques QR codes and names.
 
         """
 
@@ -68,8 +66,14 @@ class PDFGenerator(object):
 
     def generate_pdf(self, size='A4', bln_delete=1):
         """
-        Create the PDF based on the images in directory.
+        Create the PDF based on the images in QR directory.
 
+        Args:
+            size: size of the paper.
+            bln_delete: boolean to delete or not previous runs.
+
+        Returns:
+            String with the directory where the `.pdf` was created.
         """
         self.create_images()
         # Go to PDFs directory

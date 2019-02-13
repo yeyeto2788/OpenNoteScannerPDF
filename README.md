@@ -7,6 +7,9 @@ This repository contains some scripts that will let you create a final `.pdf` fi
 
 - [OpenNoteScanner PDF Creator:](#opennotescanner-pdf-creator)
 	- [Quick explanation of the code:](#quick-explanation-of-the-code)
+		- [Main PDF Generator script](#main-pdf-generator-script)
+		- [Server application script](#server-application-script)
+		- [API server script](#api-server-script)
 	- [How to run the code through CLI in Linux:](#how-to-run-the-code-through-cli-in-linux)
 	- [How to run the code for the server in Linux:](#how-to-run-the-code-for-the-server-in-linux)
 	- [Final PDF example](#final-pdf-example)
@@ -19,13 +22,33 @@ This repository contains some scripts that will let you create a final `.pdf` fi
 ---
 ## Quick explanation of the code:
 
-With a given name for the images and for the final PDF, the code will iterate based on a maximum amount of pages, it will create the QR images on a 512x512 Pixels, once the QR codes are generated the background images are created.
+### Main PDF Generator script
+With a given QR data, `.pdf` file name and a maximum amount of pages, it will create QR images of 512x512 Pixels with the QR data given plus a number ant the end of the data.
 
-These Background images are created based on generating one main background (white) the middle image (black) and the top image (white). Those images are pasted together to have a page/image with a "Black Border" with a A4 size based on 300dpi.
+Once the QR images are generated the background images are created, these Background images are generated as:
+ * 1 main background (white)
+ * 1 middle image (black)
+ * 1 top image (white).
 
-Once all this is done will iterate again on each QR code creating each page of the `.pdf` pasting the codes on the right bottom site of the page.
+Those images are pasted together to have a final image with a "Black Border" with an `A4` or `letter` size with a resolution of 300dpi.
 
-Finally, we do a iteration on the images so we can append the images into a variable to generate the PDF file.
+Once all images are done, it will iterate over each QR image generated previously creating each page of the `.pdf` placing the QR images on the right bottom site of the page.
+
+If you want more deep information please have a look at the auto generated documentation [here](./Doc/project_documentation/open_note_scanner).
+
+### Server application script
+
+This server application is developed with Flask framework and it just have only 1 landing page (`index.html`) with some information about how to use the API and some other info.
+
+### API server script
+
+The API is pretty straight forward, it only have one endpoint which is in `/api/<page_size>/<qr_data>/<int_pages>` so an example will be something like `/api/A4/P01_V05_S/50`
+and the API will return a `.pdf` file generated using the main pdf generator script with the following information:
+ * **PDF size** = A4
+ * **QR data** = Images from `P01_V05_S-0000000` to `P01_V05_S-0000050`
+ * **Number of pages** = `50`
+
+
 
 ## How to run the code through CLI in Linux:
 
