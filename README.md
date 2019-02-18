@@ -1,6 +1,8 @@
 # OpenNoteScanner PDF Creator:
 
-This repository contains some scripts that will let you create a final `.pdf` file to use with the Android Application OpenNoteScanner it is based on Python
+This repository contains some Python scripts that will let you create a final `.pdf` file to use with the Android Application OpenNoteScanner.
+
+You can create the file by web API or by a single script.  
 
 ---
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
