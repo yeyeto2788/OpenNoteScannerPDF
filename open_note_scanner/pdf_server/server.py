@@ -24,10 +24,23 @@ def home():
     Simple rendering of the `index.html` page.
 
     Returns:
-
+        Flask template return.
     """
 
     template_return = flask.render_template('index.html')
+
+    return template_return
+
+
+@app.route('/documentation')
+def documentation():
+    """
+    Render the documentation of the API
+
+    Returns:
+        Flask template return.
+    """
+    template_return = flask.render_template('documentation.html')
 
     return template_return
 

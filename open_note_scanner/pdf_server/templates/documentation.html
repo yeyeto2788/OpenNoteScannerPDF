@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Open Note Scanner</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename='css/scrolling-nav.css') }}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Open Note Scanner</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#documentation">How to</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#errors">Problems</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-primary text-white">
+    <div class="container text-center">
+      <h1>Web API Documentation</h1>
+      <p class="lead">Wanna know more?</p>
+        <p class="lead">Scroll down to read it.</p>
+    </div>
+  </header>
+
+  <section id="documentation">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>How to use the API</h2>
+            <p class="lead">The API only takes <code>HTTP GET</code> requests at <code>/api/str_size/qr_data/int_pages</code> where:</p>
+              <ul>
+                <li class="lead">
+                    <code>str_size</code>
+                    <p class="lead">Stands for the paper size, allowed values:</p>
+                    <ul>
+                        <li>A4</li>
+                        <li>letter</li>
+                    </ul>
+                </li>
+                <li class="lead">
+                    <code>qr_data</code>
+                    <p class="lead">This will be the data of the QR code on the template, things you have to keep in mind:</p>
+                    <ul>
+                        <li>It's length has to be higher than 4.</li>
+                        <li>At the end of this, a <code>-0000000</code> will be added so character at the end will be replace with page index.</li>
+                    </ul>
+                </li>
+                <li class="lead">
+                    <code>int_pages</code>
+                    <p class="lead">Number of pages that will be generated on the PDF.</p>
+                </li>
+              </ul>
+            <p class="lead"><b>For example:</b></p>
+            <ul>
+                <li class="lead"><code>A4</code> for <code>str_size</code></li>
+                <li class="lead"><code>testing</code> for <code>qr_data</code></li>
+                <li class="lead"><code>10</code> for <code>int_pages</code></li>
+            </ul>
+            <p class="lead"> in the PDF you'll have QR images with data from <code>test-0000001</code> to <code>test-0000010</code> as you can see <b><a href="/api/A4/testing/10">here</a></b>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="errors">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Known errors</h2>
+            <p class="lead">Sometimes when we don't provide proper values we can get the following error:</p>
+            <ul>
+              <li class="lead">
+                  <code>Please check size.</code>
+                  <p class="lead">Returned by wrong size of paper, the allowed sizes are (<b>A4, letter</b>)</p>
+              </li>
+              <li class="lead">
+                  <code>QR data length should be higher than 4.</code>
+                  <p class="lead">Returned by wrong length of characters on the string with information for the QR code, it has to be higher than four (<b>4</b>)</p>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+  <!-- Custom JavaScript for this theme -->
+  <script src="{{ url_for('static', filename='js/scrolling-nav.js') }}"></script>
+
+</body>
+
+</html>

@@ -104,12 +104,20 @@ and the API will return a `.pdf` file generated using the main pdf generator scr
           You have to have a data length higher than 4 character because if you do not do it you'll get the error **`QR data length should be higher than 4.`**
 
         * **int_pages** = Integer with the numbers of the pages you want the `.pdf` file to have.
+
+      This will be pages of the server:
+        <div style="text-align:center">
+          <img src="./Doc/img/pdf_embbeded_browser.png" alt="Image of the pdf embbeded on the browser"/>
+          <img src="./Doc/img/pdf_embbeded_browser.png" alt="Image of the pdf embbeded on the browser"/>
+        </div>
+
   3. **Print it!**
 
       If you followed the steps above you should have gotten the pdf file on the browser like this:
 
       <div style="text-align:center">
-        <img src="./Doc/img/pdf_embbeded_browser.png" alt="Image of the pdf embbeded on the browser"/>
+        <img src="./Doc/img/full_page_index.png" alt="Image of the server with index page" width="300"/>
+        <img src="./Doc/img/full_page_documentation.png" alt="Image of the server with documentation page" width="300"/>
       </div>
 
       now you just have to print it.
