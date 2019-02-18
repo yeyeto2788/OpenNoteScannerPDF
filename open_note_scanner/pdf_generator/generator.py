@@ -67,7 +67,7 @@ class PDFGenerator:
                 qr_img.make(fit=True)
                 img = qr_img.make_image()
                 with open('%s.png'%final_file_name, 'wb') as qr_img_file:
-                        img.save(qr_img_file)
+                    img.save(qr_img_file)
             # Return to the base directory.
             os.chdir(self.base_dir)
 
