@@ -89,8 +89,6 @@ class PDFGenerator:
         page_width = SIZES[size][0]
         page_height = SIZES[size][1]
 
-        print(page_width, page_height)
-
         # Define sizes for all boxes and X,Y location of QR images.
         if size == 'A4':
 

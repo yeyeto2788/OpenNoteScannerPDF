@@ -23,11 +23,11 @@ def create_directory():
     for str_directory in [QR_DIR, PDF_DIR]:
 
         if os.path.exists(str_directory):
-            print("No need to create directory")
+            debug("No need to create directory")
             bln_return = True
         else:
             os.mkdir(str_directory)
-            print("Directory created {}".format(str_directory))
+            debug("Directory created {}".format(str_directory))
             bln_return = True
 
     return bln_return
@@ -78,7 +78,7 @@ def debug(*args, **kargs):
 
     """
 
-    bln_print = 1
+    bln_print = 0
 
     if bln_print:
         print(*args, **kargs)
