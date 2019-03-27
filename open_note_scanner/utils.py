@@ -4,6 +4,7 @@ Common operations to be used all over the module.
 
 """
 import os
+import re
 
 BASE_PATH = os.path.dirname(os.path.realpath(__file__))
 QR_DIR = os.path.join(BASE_PATH, "QR")
@@ -82,3 +83,20 @@ def debug(*args, **kargs):
 
     if bln_print:
         print(*args, **kargs)
+
+
+def sort_alphanumeric_list(lst_unsorted):
+    """
+    Sorts the given iterable in the way that is expected.
+
+    Args:
+        lst_unsorted: List of values to be sorted.
+
+    Returns:
+        Same list sorted.
+
+    """
+
+    convert = lambda text: int(text) if text.isdigit() else text
+    alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)]
+    return sorted(lst_unsorted, key=alphanum_key)
