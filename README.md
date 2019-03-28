@@ -2,7 +2,12 @@
 
 This repository contains some Python scripts that will let you create a final `.pdf` file to use with the Android Application OpenNoteScanner.
 
-You can create the file by web API or by a single script.  
+You can create the file by web API or by a single script. You go to [PythonAnywhere](http://yeyeto2788.pythonanywhere.com/) and you'll see the web
+application running and get you `.pdf` file from it.  
+
+<div style="text-align:center">
+<img src="Doc/img/web_application.gif" width="350"/>
+</div>
 
 ---
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
