@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Open Note Scanner - Generate PDF</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename='css/scrolling-nav.css') }}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Open Note Scanner</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#generate">Generate</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-primary text-white">
+    <div class="container text-center">
+      <h1>PDF Generator</h1>
+      <p class="lead">Use the form below to generate a PDF</p>
+    </div>
+  </header>
+
+  <section id="generate">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Let's generate a PDF</h2>
+            <form action="{{ url_for('generate_pdf') }}" method="post">
+              <div class="form-group">
+                  <label for="page-size">Select size of the pages</label>
+                  <select class="form-control" id="page-size" name="page-size">
+                      <option>A4</option>
+                      <option>Letter</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                <label for="qr-data">QR Code data</label>
+                <input type="text" class="form-control" id="qr-data" name="qr-data" aria-describedby="qr-help" placeholder="Enter QR data">
+                <small id="qr-help" class="form-text text-muted">The length of the data should be higher that 4 characters.</small>
+              </div>
+              <div class="form-group">
+                <label for="int-pages">Number for pages</label>
+                <input type="text" class="form-control" id="int-pages" name="int-pages" placeholder="Enter a number">
+              </div>
+              <button type="submit" class="btn btn-primary">Generate</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+  <!-- Custom JavaScript for this theme -->
+  <script src="{{ url_for('static', filename='js/scrolling-nav.js') }}"></script>
+
+</body>
+
+</html>

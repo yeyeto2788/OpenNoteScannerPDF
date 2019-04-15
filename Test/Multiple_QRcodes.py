@@ -26,11 +26,11 @@ class GenerateQR(object):
         Global class to have it more like OOP
         """
 
-        def __init__(self, FileName):
+        def __init__(self, filename):
                 """
                 Init function to have the variables in the class
                 """
-                self.FileName=FileName
+                self.filename = filename
 
         def create_images(self):
                 """
@@ -40,14 +40,15 @@ class GenerateQR(object):
                 Just have to declare a String variable with the name. It has to be longer that 3 characters.
                 """
 
-
                 for i in range(1,51):
-                        FinalFileName = self.FileName[:-len(str(i))] + str(i)
-                        qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4, )
-                        qr.add_data(FinalFileName)
+                        finalfilename = self.filename[:-len(str(i))] + str(i)
+                        qr = qrcode.QRCode(
+                                version=1, error_correction=qrcode.constants.ERROR_CORRECT_L,
+                                box_size=10, border=4, )
+                        qr.add_data(finalfilename)
                         qr.make(fit=True)
                         img = qr.make_image()
-                        with open('%s.png'%FinalFileName, 'wb') as f:
+                        with open('%s.png' % finalfilename, 'wb') as f:
                                 img.save(f)
 
 

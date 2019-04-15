@@ -45,6 +45,27 @@ def documentation():
     return template_return
 
 
+@app.route('/generate_pdf', methods=['POST', 'GET'])
+def generate_pdf():
+    """
+    Simple wrapper for the API to generate the pdf with a form on the HTML.
+
+    Returns:
+        Template based on the method.
+    """
+
+    if flask.request.method == 'POST':
+        page_size = flask.request.form.get('page-size')
+        qr_data = flask.request.form.get('qr-data')
+        int_pages = flask.request.form.get('int-pages')
+        template_return = flask.redirect('/api/{}/{}/{}'.format(page_size, qr_data, int_pages))
+
+    else:
+        template_return = flask.render_template('generate_pdf.html')
+
+    return template_return
+
+
 @app.errorhandler(404)
 def page_not_found(error):
     """
