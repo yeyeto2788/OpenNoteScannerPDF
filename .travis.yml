@@ -9,7 +9,8 @@ before_install:
   - uname -a
 install:
   - pip install pylint>=2.2.2
-  - pip install pytest==4.3.1
+  - pip install pytest==4.4.1
+  - pip install pytest-cov==2.6.1
   - pip install -r requirements.txt
   - pip freeze
 # Execute the tests and the linter
