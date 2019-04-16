@@ -11,6 +11,6 @@ install:
   - pip install -r requirements.txt
 # Execute the tests and the linter
 script:
-  - pytest --cov=things_organizer
+  - pytest --cov=open_note_scanner
   - pylint --output-format=text --rcfile=.pylintrc --errors-only open_note_scanner
   - echo "Done"
