@@ -45,8 +45,8 @@ def documentation():
     return template_return
 
 
-@app.route('/generate_pdf', methods=['POST', 'GET'])
-def generate_pdf():
+@app.route('/generate', methods=['POST', 'GET'])
+def generate():
     """
     Simple wrapper for the API to generate the pdf with a form on the HTML.
 
