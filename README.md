@@ -1,5 +1,7 @@
 # OpenNoteScanner PDF Creator:
 
+![Master build status](https://travis-ci.com/yeyeto2788/OpenNoteScannerPDF.svg?branch=master)
+
 This repository contains some Python scripts that will let you create a final `.pdf` file to use with the Android Application OpenNoteScanner.
 
 You can create the file by web API or by a single script. You go to [PythonAnywhere](http://yeyeto2788.pythonanywhere.com/) and you'll see the web
