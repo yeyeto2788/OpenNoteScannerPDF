@@ -61,12 +61,14 @@ def delete_pdfs(bln_delete=0):
     """
 
     if bln_delete and os.path.exists(PDF_DIR):
-        pdfs = os.listdir(PDF_DIR)
-        if pdfs:
+        files = os.listdir(PDF_DIR)
 
-            for pdf in pdfs:
-                if pdf.endswith(".pdf"):
-                    os.remove(os.path.join(PDF_DIR, pdf))
+        if files:
+            for pdf in files:
+                remove_pdf = os.path.join(PDF_DIR, pdf)
+
+                if remove_pdf.endswith(".pdf") and os.path.exists(remove_pdf):
+                    os.remove(remove_pdf)
 
 
 def debug(*args, **kargs):
