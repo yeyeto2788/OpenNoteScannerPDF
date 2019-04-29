@@ -8,17 +8,11 @@ __maintainer__ = "Juan Biondi"
 
 __status__ = "Development"
 
-"""
-Import modules
-"""
 import qrcode
 
-
-"""
-EXECUTE THE CODE.
-"""
-
-qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4, )
+qr = qrcode.QRCode(
+	version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4,
+)
 
 qr.add_data("https://google.com")
 qr.make(fit=True)

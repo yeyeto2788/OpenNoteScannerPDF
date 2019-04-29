@@ -4,6 +4,7 @@ Common operations to be used all over the module.
 
 """
 import os
+import re
 
 BASE_PATH = os.path.dirname(os.path.realpath(__file__))
 QR_DIR = os.path.join(BASE_PATH, "QR")
@@ -60,12 +61,14 @@ def delete_pdfs(bln_delete=0):
     """
 
     if bln_delete and os.path.exists(PDF_DIR):
-        pdfs = os.listdir(PDF_DIR)
-        if pdfs:
+        files = os.listdir(PDF_DIR)
 
-            for pdf in pdfs:
-                if pdf.endswith(".pdf"):
-                    os.remove(os.path.join(PDF_DIR, pdf))
+        if files:
+            for pdf in files:
+                remove_pdf = os.path.join(PDF_DIR, pdf)
+
+                if remove_pdf.endswith(".pdf") and os.path.exists(remove_pdf):
+                    os.remove(remove_pdf)
 
 
 def debug(*args, **kargs):
@@ -82,3 +85,20 @@ def debug(*args, **kargs):
 
     if bln_print:
         print(*args, **kargs)
+
+
+def sort_alphanumeric_list(lst_unsorted):
+    """
+    Sorts the given iterable in the way that is expected.
+
+    Args:
+        lst_unsorted: List of values to be sorted.
+
+    Returns:
+        Same list sorted.
+
+    """
+
+    convert = lambda text: int(text) if text.isdigit() else text
+    alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)]
+    return sorted(lst_unsorted, key=alphanum_key)

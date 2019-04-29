@@ -118,7 +118,11 @@ class PDFGenerator:
 
         pdf_canvas = canvas.Canvas(self.pdf_name, pagesize=size)
 
-        for image_file in os.listdir(self.qr_directory):
+        lst_files = os.listdir(self.qr_directory)
+        print(lst_files)
+        print(utils.sort_alphanumeric_list(lst_files))
+
+        for image_file in utils.sort_alphanumeric_list(lst_files):
 
             if image_file.endswith(".png"):
                 # Move the origin up and to the left

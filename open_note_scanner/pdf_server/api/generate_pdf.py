@@ -43,7 +43,7 @@ class APIGenerator(flask_restful.Resource):
                 pdf_file = os.path.basename(pdf_route)
                 pdf_directory = os.path.dirname(pdf_route)
 
-                api_return = flask.send_from_directory(pdf_directory, pdf_file)
+                api_return = flask.send_from_directory(pdf_directory, pdf_file, as_attachment=True)
             else:
                 api_return = flask_restful.abort(
                     404, error_message="QR data length should be higher than 4.")

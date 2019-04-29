@@ -1,7 +1,7 @@
-# generate_pdf.py
+# generate.py
 
 ## NAME
-generate_pdf - Simple API for generating the `.pdf` file within the server and return it already generated.
+generate - Simple API for generating the `.pdf` file within the server and return it already generated.
 
 ## CLASSES
 
