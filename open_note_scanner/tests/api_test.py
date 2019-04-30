@@ -37,7 +37,7 @@ class TestAppEndPoints(unittest.TestCase):
         Check whether the api returns the pdf and no error is raised when passing correct values.
 
         """
-        paper_sizes = ['A4', 'letter']
+        paper_sizes = ['A4', 'Letter']
         qr_data = ['{}{:03}'.format(size, index) for index, size in enumerate(paper_sizes)]
         int_pages = ['10', '25']
 
@@ -56,7 +56,7 @@ class TestAppEndPoints(unittest.TestCase):
         Check whether the api returns the error when passing incorrect values.
 
         """
-        paper_sizes = ['A4', 'letter']
+        paper_sizes = ['A4', 'Letter']
         qr_data = ['{}{}'.format(size[:1], index) for index, size in enumerate(paper_sizes)]
         int_pages = ['10', '25']
 
