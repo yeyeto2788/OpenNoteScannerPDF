@@ -17,7 +17,7 @@ from open_note_scanner import utils
 
 SIZES = {
     'A4': A4,
-    'letter': letter
+    'Letter': letter
 }
 
 
