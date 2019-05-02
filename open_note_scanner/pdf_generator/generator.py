@@ -66,7 +66,7 @@ class PDFGenerator:
                 qr_img.add_data(final_file_name)
                 qr_img.make(fit=True)
                 img = qr_img.make_image()
-                with open('%s.png'%final_file_name, 'wb') as qr_img_file:
+                with open('{}.png'.format(final_file_name), 'wb') as qr_img_file:
                     img.save(qr_img_file)
             # Return to the base directory.
             os.chdir(self.base_dir)
@@ -119,8 +119,6 @@ class PDFGenerator:
         pdf_canvas = canvas.Canvas(self.pdf_name, pagesize=size)
 
         lst_files = os.listdir(self.qr_directory)
-        print(lst_files)
-        print(utils.sort_alphanumeric_list(lst_files))
 
         for image_file in utils.sort_alphanumeric_list(lst_files):
 
