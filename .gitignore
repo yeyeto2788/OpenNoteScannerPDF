@@ -18,5 +18,4 @@ unittests.xml
 ./pylint.txt
 
 # Modules garbage
-open_note_scanner/PDF/*
-open_note_scanner/QR/*
+open_note_scanner/tmp/*

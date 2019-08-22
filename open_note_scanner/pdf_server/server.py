@@ -8,12 +8,12 @@ this has an API which is located in
 import flask
 import flask_restful
 
-from open_note_scanner.pdf_server.api import generate_pdf
+from open_note_scanner.pdf_server.api import routes
 
 # noinspection PyTypeChecker
 app = flask.Flask(__name__, static_url_path="/static")
 API = flask_restful.Api(app)
-API.add_resource(generate_pdf.APIGenerator,
+API.add_resource(routes.APIGenerator,
                  '/api/<string:str_size>/<string:qr_data>/<int:int_pages>')
 
 

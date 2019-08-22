@@ -19,4 +19,4 @@ DEBUG = False
 if DEBUG:
     app.run(host=config['ip'], port=config['port'], threaded=True)
 else:
-    serve(app, listen='{}:{}'.format(config['ip'], config['port']))
+    serve(app, listen='{}:{}'.format(config['ip'], config['port']), threads=10)

@@ -1,10 +1,11 @@
-import unittest
 import logging
+
+from unittest import TestCase, mock
 
 from open_note_scanner.pdf_server.server import app
 
 
-class TestAppEndPoints(unittest.TestCase):
+class TestAppEndPoints(TestCase):
     """
     Unitary tests for utils.
     """
@@ -32,11 +33,25 @@ class TestAppEndPoints(unittest.TestCase):
 
         self.app = app.test_client()
 
+        self._patches = [
+            mock.patch("open_note_scanner.pdf_generator.generator.PDFGenerator"),
+            mock.patch("open_note_scanner.pdf_generator.generator.os"),
+            mock.patch("open_note_scanner.utils.os"),
+        ]
+
+        for patch in self._patches:
+            patch.start()
+
     def test_valid_urls(self):
         """
         Check whether the api returns the pdf and no error is raised when passing correct values.
 
         """
+
+        self._patches[1].get_original()[0].remove.return_value = True
+        self._patches[1].get_original()[0].chdir.return_value = True
+        self._patches[1].get_original()[0].abspath.return_value = "dummy.pdf"
+
         paper_sizes = ['A4', 'letter']
         qr_data = ['{}{:03}'.format(size, index) for index, size in enumerate(paper_sizes)]
         int_pages = ['10', '25']

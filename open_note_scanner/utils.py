@@ -6,16 +6,20 @@ Common operations to be used all over the module.
 import os
 import re
 
-BASE_PATH = os.path.dirname(os.path.realpath(__file__))
-QR_DIR = os.path.join(BASE_PATH, "QR")
-PDF_DIR = os.path.join(BASE_PATH, "PDF")
+BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'tmp'))
+TEMP_PATH = os.getenv("TEMP_DIR", BASE_PATH)
+QR_DIR = os.path.join(TEMP_PATH, "QR")
+PDF_DIR = os.path.join(TEMP_PATH, "PDF")
 
 
-def create_directory():
+def create_directory(thread_id: int):
     """
     This function will check whether directory to create image exist or not.
 
     If it does not exit it will generate the directory.
+
+    Args:
+        thread_id:
 
     Returns:
         Always True, take into account that if directory does not exists it will create it.
@@ -23,49 +27,59 @@ def create_directory():
 
     for str_directory in [QR_DIR, PDF_DIR]:
 
-        if os.path.exists(str_directory):
+        if os.path.exists(os.path.join(str_directory, str(thread_id))):
             debug("No need to create directory")
             bln_return = True
+
         else:
-            os.mkdir(str_directory)
-            debug("Directory created {}".format(str_directory))
+            os.makedirs(os.path.join(str_directory, str(thread_id)))
+            debug("Directory created {}".format(os.path.join(str_directory, str(thread_id))))
             bln_return = True
 
     return bln_return
 
 
-def delete_images(bln_delete=0):
+def delete_images(thread_id: int, bln_delete: bool = False):
     """
     Delete images after PDF is created if argument is passed.
 
     Args:
+        thread_id:
         bln_delete: whether do or not the operation.
 
     """
-    if bln_delete and os.path.exists(QR_DIR):
-        images = os.listdir(QR_DIR)
+    qr_directory = os.path.abspath(os.path.join(QR_DIR, str(thread_id)))
+
+    if bln_delete and os.path.exists(qr_directory):
+        images = os.listdir(qr_directory)
+
         if images:
 
             for image in images:
+
                 if image.endswith(".png"):
-                    os.remove(os.path.join(QR_DIR, image))
+                    os.remove(os.path.join(qr_directory, image))
 
 
-def delete_pdfs(bln_delete=0):
+def delete_pdfs(thread_id: int, bln_delete: bool = False):
     """
     Delete pdf if argument is passed.
 
     Args:
+        thread_id:
         bln_delete: whether do or not the operation.
 
     """
 
-    if bln_delete and os.path.exists(PDF_DIR):
-        files = os.listdir(PDF_DIR)
+    pdf_directory = os.path.abspath(os.path.join(PDF_DIR, str(thread_id)))
+
+    if bln_delete and os.path.exists(pdf_directory):
+        files = os.listdir(pdf_directory)
 
         if files:
+
             for pdf in files:
-                remove_pdf = os.path.join(PDF_DIR, pdf)
+                remove_pdf = os.path.join(pdf_directory, pdf)
 
                 if remove_pdf.endswith(".pdf") and os.path.exists(remove_pdf):
                     os.remove(remove_pdf)
@@ -101,4 +115,5 @@ def sort_alphanumeric_list(lst_unsorted):
 
     convert = lambda text: int(text) if text.isdigit() else text
     alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)]
+
     return sorted(lst_unsorted, key=alphanum_key)
