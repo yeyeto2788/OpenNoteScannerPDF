@@ -33,7 +33,7 @@ class APIGenerator(flask_restful.Resource):
         Returns:
             `flask_restful.abort` or `flask.send_from_directory`
         """
-
+        # pylint: disable=E1111
         if str_size == 'A4' or 'letter':
             qr_len = len(qr_data)
 
@@ -48,5 +48,6 @@ class APIGenerator(flask_restful.Resource):
 
         else:
             api_return = flask_restful.abort(404, error_message="Please check size.")
+        # pylint: enable=E1111
 
         return api_return
