@@ -42,11 +42,15 @@ class TestAppEndPoints(TestCase):
         for patch in self._patches:
             patch.start()
 
-    def test_valid_urls(self):
+    @mock.patch(
+        'open_note_scanner.pdf_server.api.controller.generate_pdf'
+    )
+    def test_valid_urls(self, mock_generate_pdfs):
         """
         Check whether the api returns the pdf and no error is raised when passing correct values.
 
         """
+        mock_generate_pdfs.return_value = ('/some/route/to/pdf', 'dummy.pdf')
 
         self._patches[1].get_original()[0].remove.return_value = True
         self._patches[1].get_original()[0].chdir.return_value = True
@@ -59,12 +63,47 @@ class TestAppEndPoints(TestCase):
         urls = ['/'.join(x) for x in list(zip(paper_sizes, qr_data, int_pages))]
         print(urls)
 
+        with mock.patch('flask.send_from_directory') as mocked:
+            mocked.return_value = True
+
+            for url in urls:
+                api_url = '/api/{}'.format(url)
+                response = self.app.get(api_url, follow_redirects=True)
+                self.assertEqual(response.status_code, 200,
+                                 msg="Expected: {}, Obtained: {} trying to get {}".format(
+                                     200, response.status_code, api_url))
+
+    @mock.patch(
+        'open_note_scanner.pdf_server.api.controller.generate_pdf'
+    )
+    def test_invalid_values(self, mock_generate_pdfs):
+        """
+        Check whether the api returns the pdf and an error is raised when passing incorrect values.
+
+        """
+        mock_generate_pdfs.return_value = ('/some/route/to/pdf', 'dummy.pdf')
+
+        self._patches[1].get_original()[0].remove.return_value = True
+        self._patches[1].get_original()[0].chdir.return_value = True
+        self._patches[1].get_original()[0].abspath.return_value = "dummy.pdf"
+
+        paper_sizes = ['NO_SIZE']
+        qr_data = ['{}{:03}'.format(size, index) for index, size in enumerate(paper_sizes)]
+        int_pages = ['10', '25']
+
+        urls = ['/'.join(x) for x in list(zip(paper_sizes, qr_data, int_pages))]
+        print(urls)
+
         for url in urls:
             api_url = '/api/{}'.format(url)
             response = self.app.get(api_url, follow_redirects=True)
-            self.assertEqual(response.status_code, 200,
-                             msg="Expected: {}, Obtained: {} trying to get {}".format(
-                                 200, response.status_code, api_url))
+            self.assertEqual(
+                response.status_code,
+                404,
+                msg=f"Expected: {404}, Obtained: {response.status_code} trying to get {api_url}"
+            )
+
+        mock_generate_pdfs.asser_not_called()
 
     def test_invalid_urls(self):
         """

@@ -28,7 +28,7 @@ def generate_pdf(str_size: str, qr_data: str, int_pages: int) -> (str, str):
     pdf = pdf_generator.PDFGenerator(qr_data,
                                      '{}.pdf'.format(str(int(time.time()))),
                                      int_pages)
-    pdf_route = pdf.generate_pdf(str_size, bln_delete=1)
+    pdf_route = pdf.generate_pdf(str_size, bln_delete=True)
 
     pdf_file = os.path.basename(pdf_route)
     pdf_directory = os.path.dirname(pdf_route)

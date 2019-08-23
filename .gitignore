@@ -1,21 +1,30 @@
-# Compiled:
-*.pyc
-
-# Virtual environments:
-/venv/*
-
-# Pycharm related:
-.idea/
-.cache
-*__pycache__*
-
-# Test related files:
+# Test and coverage files.
+/htmlcov
 .coverage
 coverage.xml
 unittests.xml
+.pytest_cache
 
-# PyLint related files:
-./pylint.txt
+# Pylint files
+pylint.out
 
-# Modules garbage
-open_note_scanner/tmp/*
+# Setup distribution files
+dist/*
+
+.cache
+# IDE files
+.idea
+.vscode
+
+# Virtual envs
+venv
+/venv/*
+
+
+# Other files
+*.pyc
+*.egg-info*
+.pre-commit-config.yaml
+/demo/file_examples
+tmp
+tmp/*

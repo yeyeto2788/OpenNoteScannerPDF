@@ -101,12 +101,12 @@ def debug(*args, **kargs):
         print(*args, **kargs)
 
 
-def sort_alphanumeric_list(lst_unsorted):
+def sort_alphanumeric_list(unsorted: list) -> list:
     """
     Sorts the given iterable in the way that is expected.
 
     Args:
-        lst_unsorted: List of values to be sorted.
+        unsorted: List of values to be sorted.
 
     Returns:
         Same list sorted.
@@ -116,4 +116,4 @@ def sort_alphanumeric_list(lst_unsorted):
     convert = lambda text: int(text) if text.isdigit() else text
     alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)]
 
-    return sorted(lst_unsorted, key=alphanum_key)
+    return sorted(unsorted, key=alphanum_key)
