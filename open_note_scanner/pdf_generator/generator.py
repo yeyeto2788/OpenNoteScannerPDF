@@ -9,6 +9,8 @@ class `PDFGenerator`
 import os
 import qrcode
 
+import threading
+
 from reportlab.lib.pagesizes import A4, letter
 from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
@@ -27,12 +29,12 @@ class PDFGenerator:
     generate the PDF files.
 
     """
-    base_dir = utils.BASE_PATH
+    base_dir = utils.TEMP_PATH
     qr_directory = utils.QR_DIR
     pdf_directory = utils.PDF_DIR
     bg_image_name = "BG.png"
 
-    def __init__(self, str_qr_data, pdf_name, int_pages):
+    def __init__(self, str_qr_data: str, pdf_name: str, int_pages: int):
         """
         Constructor method to have the variables in the class
 
@@ -54,7 +56,11 @@ class PDFGenerator:
 
         """
 
-        if utils.create_directory():
+        thread_id = threading.get_ident()
+
+        self.qr_directory = os.path.abspath(os.path.join(self.qr_directory, str(thread_id)))
+
+        if utils.create_directory(thread_id):
             # Go to QR images directory.
             os.chdir(self.qr_directory)
             for int_index in range(1, (self.max_pages + 1)):
@@ -66,12 +72,13 @@ class PDFGenerator:
                 qr_img.add_data(final_file_name)
                 qr_img.make(fit=True)
                 img = qr_img.make_image()
+
                 with open('{}.png'.format(final_file_name), 'wb') as qr_img_file:
                     img.save(qr_img_file)
             # Return to the base directory.
             os.chdir(self.base_dir)
 
-    def generate_pdf(self, size='A4', bln_delete=1):
+    def generate_pdf(self, size: str = 'A4', bln_delete: bool = True):
         """
         Create the PDF based on the images in QR directory.
 
@@ -82,6 +89,11 @@ class PDFGenerator:
         Returns:
             String with the directory where the `.pdf` was created.
         """
+
+        thread_id = threading.get_ident()
+
+        self.pdf_directory = os.path.abspath(os.path.join(self.pdf_directory, str(thread_id)))
+
         self.create_images()
         # Go to PDFs directory
         os.chdir(self.pdf_directory)
@@ -141,7 +153,7 @@ class PDFGenerator:
         pdf_canvas.save()
 
         if bln_delete:
-            utils.delete_images(bln_delete)
+            utils.delete_images(thread_id, bln_delete)
         # Return to based directory
         os.chdir(self.base_dir)
 
