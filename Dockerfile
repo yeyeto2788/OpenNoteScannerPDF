@@ -2,6 +2,8 @@
 FROM python:3.7
 # Add all files from the repository.
 COPY . /ons
+# Set working directory to the one we've just copied.
+WORKDIR /ons
 # Install dependencies.
 RUN pip install -r requirements.txt
 # Define the entrypoint
