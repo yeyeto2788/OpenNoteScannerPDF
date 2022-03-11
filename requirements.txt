@@ -1,6 +1,6 @@
 reportlab==3.5.55
 qrcode==6.1
-Pillow==9.0.0
+Pillow==9.0.1
 Flask>=1.0.2
 Flask-RESTful>=0.3.6
 waitress>=1.2.1
