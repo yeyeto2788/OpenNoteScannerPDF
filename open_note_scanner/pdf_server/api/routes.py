@@ -34,17 +34,21 @@ class APIGenerator(flask_restful.Resource):
             `flask_restful.abort` or `flask.send_from_directory`
         """
         # pylint: disable=E1111
-        if str_size == 'A4' or 'letter':
+        if str_size == "A4" or "letter":
             qr_len = len(qr_data)
 
             if qr_len > 4:
+                pdf_file, pdf_directory = controller.generate_pdf(
+                    str_size, qr_data, int_pages
+                )
 
-                pdf_file, pdf_directory = controller.generate_pdf(str_size, qr_data, int_pages)
-
-                api_return = flask.send_from_directory(pdf_directory, pdf_file, as_attachment=True)
+                api_return = flask.send_from_directory(
+                    pdf_directory, pdf_file, as_attachment=True
+                )
             else:
                 api_return = flask_restful.abort(
-                    404, error_message="QR data length should be higher than 4.")
+                    404, error_message="QR data length should be higher than 4."
+                )
 
         else:
             api_return = flask_restful.abort(404, error_message="Please check size.")

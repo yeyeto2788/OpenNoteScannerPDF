@@ -6,7 +6,9 @@ Common operations to be used all over the module.
 import os
 import re
 
-BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'tmp'))
+BASE_PATH = os.path.abspath(
+    os.path.join(os.path.dirname(os.path.realpath(__file__)), "tmp")
+)
 TEMP_PATH = os.getenv("TEMP_DIR", BASE_PATH)
 QR_DIR = os.path.join(TEMP_PATH, "QR")
 PDF_DIR = os.path.join(TEMP_PATH, "PDF")
@@ -26,14 +28,17 @@ def create_directory(thread_id: int):
     """
 
     for str_directory in [QR_DIR, PDF_DIR]:
-
         if os.path.exists(os.path.join(str_directory, str(thread_id))):
             debug("No need to create directory")
             bln_return = True
 
         else:
             os.makedirs(os.path.join(str_directory, str(thread_id)))
-            debug("Directory created {}".format(os.path.join(str_directory, str(thread_id))))
+            debug(
+                "Directory created {}".format(
+                    os.path.join(str_directory, str(thread_id))
+                )
+            )
             bln_return = True
 
     return bln_return
@@ -54,9 +59,7 @@ def delete_images(thread_id: int, bln_delete: bool = False):
         images = os.listdir(qr_directory)
 
         if images:
-
             for image in images:
-
                 if image.endswith(".png"):
                     os.remove(os.path.join(qr_directory, image))
 
@@ -77,7 +80,6 @@ def delete_pdfs(thread_id: int, bln_delete: bool = False):
         files = os.listdir(pdf_directory)
 
         if files:
-
             for pdf in files:
                 remove_pdf = os.path.join(pdf_directory, pdf)
 
@@ -114,6 +116,6 @@ def sort_alphanumeric_list(unsorted: list) -> list:
     """
 
     convert = lambda text: int(text) if text.isdigit() else text
-    alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)]
+    alphanum_key = lambda key: [convert(c) for c in re.split("([0-9]+)", key)]
 
     return sorted(unsorted, key=alphanum_key)

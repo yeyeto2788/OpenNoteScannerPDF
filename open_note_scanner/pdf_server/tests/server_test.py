@@ -1,5 +1,5 @@
-import unittest
 import logging
+import unittest
 
 from open_note_scanner.pdf_server.server import app
 
@@ -21,13 +21,17 @@ class TestAppEndPoints(unittest.TestCase):
         """
         Test setUp.
         """
-        app.config['TESTING'] = True
-        app.config['WTF_CSRF_ENABLED'] = False
-        app.config['DEBUG'] = False
+        app.config["TESTING"] = True
+        app.config["WTF_CSRF_ENABLED"] = False
+        app.config["DEBUG"] = False
         self.app_views = [
-            rule.__str__() for rule in app.url_map._rules if 'GET' in rule.methods and (
-                    not rule.__str__().endswith(
-                        '/<int:int_pages>') and not rule.__str__().endswith('/<path:filename>'))
+            rule.__str__()
+            for rule in app.url_map._rules
+            if "GET" in rule.methods
+            and (
+                not rule.__str__().endswith("/<int:int_pages>")
+                and not rule.__str__().endswith("/<path:filename>")
+            )
         ]
 
         self.app = app.test_client()
@@ -37,9 +41,12 @@ class TestAppEndPoints(unittest.TestCase):
         Check whether the root path is enable.
 
         """
-        response = self.app.get('/', follow_redirects=True)
-        self.assertEqual(response.status_code, 200, msg="Expected: {}, Obtained: {}".format(
-            200, response.status_code))
+        response = self.app.get("/", follow_redirects=True)
+        self.assertEqual(
+            response.status_code,
+            200,
+            msg="Expected: {}, Obtained: {}".format(200, response.status_code),
+        )
 
     def test_get_routes(self):
         """
@@ -48,8 +55,11 @@ class TestAppEndPoints(unittest.TestCase):
         """
         for route in self.app_views:
             response = self.app.get(route, follow_redirects=True)
-            self.assertEqual(response.status_code, 200, msg="Expected: {}, Obtained: {}".format(
-                200, response.status_code))
+            self.assertEqual(
+                response.status_code,
+                200,
+                msg="Expected: {}, Obtained: {}".format(200, response.status_code),
+            )
 
     def tearDown(self):
         """

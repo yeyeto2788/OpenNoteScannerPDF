@@ -13,12 +13,13 @@ from open_note_scanner.pdf_server.api import routes
 # noinspection PyTypeChecker
 app = flask.Flask(__name__, static_url_path="/static")
 API = flask_restful.Api(app)
-API.add_resource(routes.APIGenerator,
-                 '/api/<string:str_size>/<string:qr_data>/<int:int_pages>')
+API.add_resource(
+    routes.APIGenerator, "/api/<string:str_size>/<string:qr_data>/<int:int_pages>"
+)
 
 
-@app.route('/')
-@app.route('/home')
+@app.route("/")
+@app.route("/home")
 def home():
     """
     Simple rendering of the `index.html` page.
@@ -27,12 +28,12 @@ def home():
         Flask template return.
     """
 
-    template_return = flask.render_template('index.html')
+    template_return = flask.render_template("index.html")
 
     return template_return
 
 
-@app.route('/documentation')
+@app.route("/documentation")
 def documentation():
     """
     Render the documentation of the API
@@ -40,12 +41,12 @@ def documentation():
     Returns:
         Flask template return.
     """
-    template_return = flask.render_template('documentation.html')
+    template_return = flask.render_template("documentation.html")
 
     return template_return
 
 
-@app.route('/generate', methods=['POST', 'GET'])
+@app.route("/generate", methods=["POST", "GET"])
 def generate():
     """
     Simple wrapper for the API to generate the pdf with a form on the HTML.
@@ -54,14 +55,16 @@ def generate():
         Template based on the method.
     """
 
-    if flask.request.method == 'POST':
-        page_size = flask.request.form.get('page-size')
-        qr_data = flask.request.form.get('qr-data')
-        int_pages = flask.request.form.get('int-pages')
-        template_return = flask.redirect('/api/{}/{}/{}'.format(page_size, qr_data, int_pages))
+    if flask.request.method == "POST":
+        page_size = flask.request.form.get("page-size")
+        qr_data = flask.request.form.get("qr-data")
+        int_pages = flask.request.form.get("int-pages")
+        template_return = flask.redirect(
+            "/api/{}/{}/{}".format(page_size, qr_data, int_pages)
+        )
 
     else:
-        template_return = flask.render_template('generate_pdf.html')
+        template_return = flask.render_template("generate_pdf.html")
 
     return template_return
 
@@ -79,4 +82,4 @@ def page_not_found(error):
 
     """
 
-    return flask.render_template('404.html'), 404
+    return flask.render_template("404.html"), 404

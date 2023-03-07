@@ -2,11 +2,11 @@
 Simple controller for the API so main logic is out of the endpoint itself.
 """
 import os
-import time
 import threading
+import time
 
-from open_note_scanner import utils
 from open_note_scanner import pdf_generator
+from open_note_scanner import utils
 
 
 def generate_pdf(str_size: str, qr_data: str, int_pages: int) -> (str, str):
@@ -25,9 +25,9 @@ def generate_pdf(str_size: str, qr_data: str, int_pages: int) -> (str, str):
     thread_id = threading.get_ident()
 
     utils.delete_pdfs(thread_id, True)
-    pdf = pdf_generator.PDFGenerator(qr_data,
-                                     '{}.pdf'.format(str(int(time.time()))),
-                                     int_pages)
+    pdf = pdf_generator.PDFGenerator(
+        qr_data, "{}.pdf".format(str(int(time.time()))), int_pages
+    )
     pdf_route = pdf.generate_pdf(str_size, bln_delete=True)
 
     pdf_file = os.path.basename(pdf_route)

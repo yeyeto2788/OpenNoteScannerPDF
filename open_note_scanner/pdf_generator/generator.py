@@ -7,20 +7,17 @@ class `PDFGenerator`
 
 """
 import os
-import qrcode
-
 import threading
 
-from reportlab.lib.pagesizes import A4, letter
+import qrcode
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
 
 from open_note_scanner import utils
 
-SIZES = {
-    'A4': A4,
-    'Letter': letter
-}
+SIZES = {"A4": A4, "Letter": letter}
 
 
 class PDFGenerator:
@@ -29,6 +26,7 @@ class PDFGenerator:
     generate the PDF files.
 
     """
+
     base_dir = utils.TEMP_PATH
     qr_directory = utils.QR_DIR
     pdf_directory = utils.PDF_DIR
@@ -44,7 +42,7 @@ class PDFGenerator:
             int_pages: Number of pages that pdf will have.
 
         """
-        self.qr_data = str_qr_data + '-0000000'
+        self.qr_data = str_qr_data + "-0000000"
         self.pdf_name = pdf_name
         self.max_pages = int_pages
 
@@ -58,27 +56,31 @@ class PDFGenerator:
 
         thread_id = threading.get_ident()
 
-        self.qr_directory = os.path.abspath(os.path.join(self.qr_directory, str(thread_id)))
+        self.qr_directory = os.path.abspath(
+            os.path.join(self.qr_directory, str(thread_id))
+        )
 
         if utils.create_directory(thread_id):
             # Go to QR images directory.
             os.chdir(self.qr_directory)
             for int_index in range(1, (self.max_pages + 1)):
-                final_file_name = self.qr_data[:-len(str(int_index))] + str(int_index)
-                qr_img = qrcode.QRCode(version=1,
-                                       error_correction=qrcode.constants.ERROR_CORRECT_L,
-                                       box_size=10,
-                                       border=4, )
+                final_file_name = self.qr_data[: -len(str(int_index))] + str(int_index)
+                qr_img = qrcode.QRCode(
+                    version=1,
+                    error_correction=qrcode.constants.ERROR_CORRECT_L,
+                    box_size=10,
+                    border=4,
+                )
                 qr_img.add_data(final_file_name)
                 qr_img.make(fit=True)
                 img = qr_img.make_image()
 
-                with open('{}.png'.format(final_file_name), 'wb') as qr_img_file:
+                with open("{}.png".format(final_file_name), "wb") as qr_img_file:
                     img.save(qr_img_file)
             # Return to the base directory.
             os.chdir(self.base_dir)
 
-    def generate_pdf(self, size: str = 'A4', bln_delete: bool = True):
+    def generate_pdf(self, size: str = "A4", bln_delete: bool = True):
         """
         Create the PDF based on the images in QR directory.
 
@@ -92,7 +94,9 @@ class PDFGenerator:
 
         thread_id = threading.get_ident()
 
-        self.pdf_directory = os.path.abspath(os.path.join(self.pdf_directory, str(thread_id)))
+        self.pdf_directory = os.path.abspath(
+            os.path.join(self.pdf_directory, str(thread_id))
+        )
 
         self.create_images()
         # Go to PDFs directory
@@ -102,8 +106,7 @@ class PDFGenerator:
         page_height = SIZES[size][1]
 
         # Define sizes for all boxes and X,Y location of QR images.
-        if size == 'A4':
-
+        if size == "A4":
             bk_width = page_width - 10.4
             bk_height = page_height - 70.4
             wt_width = page_width - 32
@@ -133,7 +136,6 @@ class PDFGenerator:
         lst_files = os.listdir(self.qr_directory)
 
         for image_file in utils.sort_alphanumeric_list(lst_files):
-
             if image_file.endswith(".png"):
                 # Move the origin up and to the left
                 pdf_canvas.translate(0, 0)
@@ -147,8 +149,9 @@ class PDFGenerator:
 
                 image_dir = os.path.join(self.qr_directory, image_file)
                 # Add QR image into canvas
-                pdf_canvas.drawImage(image_dir, qr_x, qr_y,
-                                     width=qr_width, height=qr_height, mask=None)
+                pdf_canvas.drawImage(
+                    image_dir, qr_x, qr_y, width=qr_width, height=qr_height, mask=None
+                )
                 pdf_canvas.showPage()
         pdf_canvas.save()
 

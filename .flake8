@@ -1,0 +1,34 @@
+[flake8]
+max-line-length = 120
+exclude = 
+  .git,
+  __pycache__,
+  README.md,
+  poetry.lock,
+  Dockerfile,
+  .pre-commit-config.yaml,
+  .flake8,
+  .gitignore,
+  requirements.txt,
+  .dockerignore,
+  pytest.ini,
+  pyproject.toml,
+  poetry.toml,
+  .vscode/*,
+  CHANGELOG.md,
+  .gitlab-ci.yml,
+  requirements-dev.txt,
+  doc/*,
+  .coveragerc,
+  venv/*,
+  .venv/*,
+  example_data/*,
+  setup.py,
+  task-definition.json,
+  .devcontainer/*,
+  tests/*.json,
+  tests/*.csv,
+  tests/*.txt
+max-complexity = 15
+include=open_note_scanner/*.py
+ignore = F841, W503, C901, E203

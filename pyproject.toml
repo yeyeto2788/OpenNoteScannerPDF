@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "opennotescannerpdf"
+version = "0.1.0"
+description = "Create a final `.pdf` file to use with the Android Application OpenNoteScanner."
+authors = ["Juan Biondi <juanernestobiondi@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.8.1,<4.0"
+reportlab = "^3.6.12"
+qrcode = "^7.4.2"
+pillow = "^9.4.0"
+flask = "^2.2.3"
+flask-restful = "^0.3.9"
+waitress = "^2.1.2"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.1.0"
+pytest = "^7.2.2"
+isort = "^5.12.0"
+pre-commit = "^3.1.1"
+pylint = "^2.16.4"
+flake8 = "^6.0.0"
+mypy = "^1.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
